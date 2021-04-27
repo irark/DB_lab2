@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DB_lab2.Actor>
+
+@{
+    ViewData["Title"] = "Actors";
+}
+
+<h1>Актори</h1>
+
+    <p>
+        <a asp-action="Create">Додати</a>
+    </p>
+
+<table class="table">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-secondary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Редагувати |</a><br />
+                        <a asp-action="Delete" asp-route-id="@item.Id"> Видалити |</a><br />
+                   
+                    @Html.ActionLink("Перелік ", "Index", "Films", new { firstId = item.Id, retController = "Actors" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
